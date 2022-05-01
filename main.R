@@ -3,7 +3,7 @@ library(tidyverse)
 library(googledrive)
 
 # Load functions ----
-functions <- paste0("R/", list.files("R/"))
+functions <- list.files("R/", full.names = TRUE)
 walk(functions, source)
 
 # Download data ----
