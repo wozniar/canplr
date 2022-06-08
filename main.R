@@ -7,7 +7,7 @@ functions <- list.files("R/", full.names = TRUE)
 walk(functions, source)
 
 # Download data ----
-download_data()
+download_data(Sys.getenv("drive_email"), Sys.getenv("drive_url"))
 
 # Run pipeline ----
 data <- read_data() |> 
