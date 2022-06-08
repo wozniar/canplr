@@ -1,6 +1,8 @@
 # Load packages ----
 library(tidyverse)
 library(googledrive)
+library(ggrepel)
+library(scales)
 
 # Load functions ----
 functions <- list.files("R/", full.names = TRUE)
