@@ -40,3 +40,5 @@ vignettes/*.pdf
 
 # Added
 data/
+graphics/
+plots/
