@@ -14,8 +14,12 @@ walk(functions, source)
 # Download data ----
 download_data(Sys.getenv("drive_email"), Sys.getenv("drive_url"))
 
+# Update data ----
+update_data(Sys.getenv("drive_email"), Sys.getenv("drive_url"))
+
 # Run pipeline ----
 data <- read_data() |> 
   map(distinct_cols)
 
   
+

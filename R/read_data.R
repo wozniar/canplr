@@ -1,5 +1,5 @@
 read_data <- function() {
-  files <- list.files("data/", full.names = TRUE)
+  files <- list.files("data/", pattern = "csv", full.names = TRUE)
   data <- map(files, read_csv)
   names(data) <- str_remove(list.files("data/"), ".csv")
   return(data)
