@@ -1,6 +1,7 @@
 # Load packages ----
 library(tidyverse)
 library(googledrive)
+library(lubridate)
 library(ggrepel)
 library(scales)
 library(showtext)
@@ -20,6 +21,3 @@ update_data(Sys.getenv("drive_email"), Sys.getenv("drive_url"))
 # Run pipeline ----
 data <- read_data() |> 
   map(distinct_cols)
-
-  
-

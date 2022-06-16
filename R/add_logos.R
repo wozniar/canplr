@@ -6,6 +6,6 @@ add_logos <- function(plot, team_image_id) {
   ggdraw() +
     draw_plot(plot) +
     # draw_image(team_logo, x = -0.47, y = 0.45, scale = 0.15) +
-    draw_image(sp_logo, x = -0.3, y = -0.42, scale = 0.15) +
-    draw_image(cpl_logo, x = 0.3, y = -0.42, scale = 0.10)
+    draw_image(sp_logo, x = -0.4, y = -0.42, scale = 0.15) +
+    draw_image(cpl_logo, x = 0.425, y = -0.42, scale = 0.10)
 }

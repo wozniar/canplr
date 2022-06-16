@@ -17,4 +17,3 @@ distinct_cols <- function(df) {
   }
   return(df)
 }
-

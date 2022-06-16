@@ -17,7 +17,10 @@ plot_squad_profile <- function(team_name, season, save = FALSE) {
 
   plot <- ggplot(df, aes(x = Age, y = Min, label = Player)) +
     geom_rect(aes(xmin = 24, xmax = 29, ymin = 0, ymax = 2500), alpha = 0.01, fill = league_colours[3]) +
-    geom_point(colour = team_colours[[team_name]][2], fill = team_colours[[team_name]][1], shape = 21, size = 2) +
+    annotate("text", x = 20, y = 1250, label = "YOUTH", angle = 90, size = 125 / .pt, colour = league_colours[2], alpha = 0.2) +
+    annotate("text", x = 26.5, y = 1250, label = "PEAK", angle = 90, size = 125 / .pt, colour = league_colours[2], alpha = 0.2) +
+    annotate("text", x = 34.5, y = 1250, label = "EXPERIENCE", angle = 90, size = 125 / .pt, colour = league_colours[2], alpha = 0.2) +
+    geom_point(colour = team_colours[[team_name]][2], fill = team_colours[[team_name]][1], shape = 21, size = 2, stroke = 0.75) +
     geom_text_repel(colour = league_colours[2], family = "Oswald", size = 25 / .pt, max.overlaps = 30) +
     scale_x_continuous(
       breaks = seq.int(from = 16, to = 40, by = 4),
@@ -32,7 +35,7 @@ plot_squad_profile <- function(team_name, season, save = FALSE) {
     ) +
     labs(
       title = paste(team_name, season, "season squad profile"),
-      subtitle = paste("Average age weighted by minutes played:", mean_age),
+      subtitle = paste("Players used:", nrow(df), "\nAverage age weighted by minutes played:", mean_age),
       x = "Age",
       y = "Minutes played",
       caption = "@CanPLdata | #CCdata | #CanPL"
@@ -51,7 +54,7 @@ plot_squad_profile <- function(team_name, season, save = FALSE) {
       plot.caption = element_text(size = 30),
       plot.title = element_text(color = league_colours[2], hjust = 0.5, margin = unit(c(7.5, 0, 7.5, 0), "pt"), size = 50),
       plot.title.position = "plot",
-      plot.subtitle = element_text(color = league_colours[2], hjust = 0.5, margin = unit(c(0, 0, 10, 0), "pt"), size = 30),
+      plot.subtitle = element_text(color = league_colours[2], hjust = 0.5, lineheight = 0.3, margin = unit(c(0, 0, 10, 0), "pt"), size = 30),
       text = element_text(colour = league_colours[2], family = "Oswald", size = 25)
     )
   
