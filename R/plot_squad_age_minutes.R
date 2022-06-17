@@ -35,7 +35,7 @@ plot_squad_age_minutes <- function(team_name, season) {
     ) +
     labs(
       title = paste(team_name, season, "season squad profile"),
-      subtitle = paste("Players used:", nrow(df), "\nAverage age weighted by minutes played:", mean_age),
+      subtitle = paste("Average age weighted by minutes played:", mean_age),
       x = "Age",
       y = "Minutes played",
       caption = "@CanPLdata | #CCdata | #CanPL"
@@ -44,5 +44,5 @@ plot_squad_age_minutes <- function(team_name, season) {
   
   path <- paste0("plots/", team_name, "_", season, "_season_squad_age_minutes.png")
   ggsave(path, plot, width = 2048, height = 2048, units = "px")
-  #add_logos(path, team_image_id)
+  add_logos(path, team_image_id)
 }
