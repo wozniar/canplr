@@ -5,7 +5,6 @@ library(lubridate)
 library(ggrepel)
 library(scales)
 library(showtext)
-library(cowplot)
 library(magick)
 
 # Load functions ----

@@ -1,4 +1,4 @@
-plot_squad_age_minutes <- function(team_name, season, save = FALSE) {
+plot_squad_age_minutes <- function(team_name, season) {
   df <- data[[paste0("CPLPlayerByGame", season)]] |>
     filter(teamName == team_name) |>
     group_by(Player) |>
@@ -42,11 +42,7 @@ plot_squad_age_minutes <- function(team_name, season, save = FALSE) {
     ) +
     theme_canpl()
   
-  plot <- add_logos(plot, team_image_id)
-  
-  if (save == TRUE) {
-    ggsave(paste0("plots/", team_name, "_", season, "_season_squad_age_minutes.png"), plot, width = 2048, height = 2048, units = "px")
-  }
-
-  return(plot)
+  path <- paste0("plots/", team_name, "_", season, "_season_squad_age_minutes.png")
+  ggsave(path, plot, width = 2048, height = 2048, units = "px")
+  #add_logos(path, team_image_id)
 }

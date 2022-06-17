@@ -1,6 +1,6 @@
 # FIXME: cowplot adds space to the left of the panel
 
-plot_squad_age_positions <- function(team_name, season, save = FALSE) {
+plot_squad_age_positions <- function(team_name, season) {
   df_age <- data[[paste0("CPLPlayerByGame", season)]] |>
     filter(teamName == team_name) |>
     group_by(playerId, Player) |>
@@ -25,10 +25,12 @@ plot_squad_age_positions <- function(team_name, season, save = FALSE) {
     left_join(df_position, by = "playerId") |>
     get_positions_codes(Position)
 
-  peak_ages <- get_peak_ages()
+  peak_ages <- get_peak_ages() |> 
+    filter(position_code %in% df$position_code) |> 
+    mutate(position_code = fct_drop(position_code))
 
   plot <- ggplot(df, aes(x = Age, y = Player)) +
-    facet_grid(rows = vars(position_code), scales = "free", space = "free") +
+    facet_grid(rows = vars(position_code), scales = "free_y", space = "free_y") +
     geom_rect(data = peak_ages, aes(x = NULL, y = NULL, xmin = peak_age_min, xmax = peak_age_max), ymin = -Inf, ymax = Inf, alpha = 0.25, fill = league_colours[3]) +
     geom_point(colour = team_colours[[team_name]][2], fill = team_colours[[team_name]][1], shape = 21, size = 2, stroke = 0.75) +
     scale_x_continuous(
@@ -46,13 +48,12 @@ plot_squad_age_positions <- function(team_name, season, save = FALSE) {
       y = NULL,
       caption = "@CanPLdata | #CCdata | #CanPL"
     ) +
-    theme_canpl()
+    theme_canpl() +
+    theme(
+      plot.caption = element_text(hjust = 1.096)
+    )
 
-  # plot <- add_logos(plot, team_image_id)
-
-  if (save == TRUE) {
-    ggsave(paste0("plots/", team_name, "_", season, "_season_squad_age_positions.png"), plot, width = 2048, height = 2048, units = "px")
-  }
-  
-  return(plot)
+  path <- paste0("plots/", team_name, "_", season, "_season_squad_age_positions.png")
+  ggsave(path, plot, width = 2048, height = 2048, units = "px")
+  add_logos(path, team_image_id)
 }
