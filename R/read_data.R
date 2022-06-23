@@ -7,30 +7,26 @@ read_data <- function(data) {
 
 read_player_by_game <- function() {
   read_data("CPLPlayerByGame") |> 
-    bind_rows(.id = "season") |> 
-    mutate(season = as.numeric(season)) |> 
-    distinct_cols()
+    bind_rows(.id = "year") |> 
+    mutate(year = as.numeric(year))
 }
 
 read_player_totals <- function() {
   read_data("CPLPlayerTotals") |> 
-    bind_rows(.id = "season") |> 
-    mutate(season = as.numeric(season)) |> 
-    distinct_cols()
+    bind_rows(.id = "year") |> 
+    mutate(year = as.numeric(year))
 }
 
 read_team_by_game <- function() {
   read_data("CPLTeamByGame") |> 
     map(~ .x |> mutate(xGPerShot = as.numeric(xGPerShot))) |>
     map(~ .x |> mutate(Date = as.Date(Date, tryFormats = c("%Y-%m-%d", "%m/%d/%Y")))) |>
-    bind_rows(.id = "season") |> 
-    mutate(season = as.numeric(season)) |> 
-    distinct_cols()
+    bind_rows(.id = "year") |> 
+    mutate(year = as.numeric(year))
 }
 
 read_team_totals <- function() {
   read_data("CPLTeamTotals") |> 
-    bind_rows(.id = "season") |>
-    mutate(season = as.numeric(season)) |> 
-    distinct_cols()
+    bind_rows(.id = "year") |>
+    mutate(year = as.numeric(year))
 }

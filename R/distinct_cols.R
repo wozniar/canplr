@@ -1,3 +1,4 @@
+# FIXME: use coalesce() instead of dropping variables
 distinct_cols <- function(df) {
   new_names <- tibble(name = names(df)) |> 
     mutate(ellipsis_position = asplit(str_locate(name, "\\..."), 1)) |> 

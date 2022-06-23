@@ -22,8 +22,10 @@ if (!("Lato" %in% font_installed())) {
 showtext_auto()
 
 # COLOURS ----
-# League colours as found here: https://sportsfancovers.com/canadian-premier-league-color-codes/
-# Team colours as found here: https://www.trucolor.net/portfolio/canadian-premier-league-official-colors-2019-through-present/
+# League colours as found here:
+# https://sportsfancovers.com/canadian-premier-league-color-codes/
+# Team colours as found here:
+# https://www.trucolor.net/portfolio/canadian-premier-league-official-colors-2019-through-present/
 league_colours <- c("#A2C523", "#22356F", "#40BAED", "#FFFFFF")
 team_colours <- vector("list", 8)
 names(team_colours) <- c("Atlético Ottawa", "Cavalry", "Edmonton", "Forge", "HFX Wanderers", "Pacific", "Valour", "York United")

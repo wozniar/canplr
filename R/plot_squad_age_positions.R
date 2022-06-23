@@ -1,20 +1,21 @@
 plot_squad_age_positions <- function(team_name, season) {
-  df_age <- data[[paste0("CPLPlayerByGame", season)]] |>
-    filter(teamName == team_name) |>
+  df_age <- player_by_game |>
+    filter(teamName == team_name & year == season) |>
     group_by(playerId, Player) |>
     summarise(
-      Age = max(Age),
-      Min = sum(Min)
+      Age = max(Age)
     ) |>
     ungroup() |>
-    filter(!(is.na(Age)) & !(is.na(Min)))
+    filter(!(is.na(Age)) & Age > 0)
 
-  df_position <- data[[paste0("CPLPlayerByGame", season)]] |>
-    filter(teamName == team_name) |>
+  df_position <- player_by_game |>
+    filter(teamName == team_name & year == season) |>
     group_by(playerId, Position) |>
-    count() |>
+    summarise(
+      Min = sum(Min)
+    ) |>
     group_by(playerId) |>
-    slice_max(order_by = n, n = 1, with_ties = FALSE) |>
+    slice_max(order_by = Min, n = 1, with_ties = FALSE) |>
     ungroup() |>
     select(playerId, Position)
 
@@ -22,20 +23,34 @@ plot_squad_age_positions <- function(team_name, season) {
     left_join(df_position, by = "playerId") |>
     get_positions_codes(Position)
 
-  peak_ages <- get_peak_ages() |> 
-    filter(position_code %in% df$position_code) |> 
+  peak_ages <- get_peak_ages() |>
+    filter(position_code %in% df$position_code) |>
     mutate(position_code = fct_drop(position_code))
-  
-  df <- df |> 
-    left_join(peak_ages) |> 
-    mutate(dist = Age - peak_age)
-  
-  peak_age_dist <- round(mean(df$dist), 1)
 
-  plot <- ggplot(df, aes(x = Age, y = fct_reorder(Player, Age, max))) +
+  df <- df |>
+    left_join(peak_ages) |>
+    mutate(dist = Age - peak_age)
+
+  peak_age_dist <- round(mean(df$dist), 1)
+  
+  gk_count <- df |> 
+    filter(position_code == "GK") |> 
+    nrow()
+  
+  annotation <- annotation_custom2(
+    grob = textGrob("Peak Age", gp = gpar(col = league_colours[2], fontsize = 30, fontfamily = "Oswald")),
+    xmin = 26.5,
+    xmax = 29.5,
+    ymin = gk_count + 1.75,
+    data = tibble(position_code = factor("GK", levels = c("GK", "CB", "FB", "CM", "WM", "AM", "ST")))
+    )
+
+  plot <- ggplot(df) +
     facet_grid(rows = vars(position_code), scales = "free_y", space = "free_y") +
     geom_rect(data = peak_ages, aes(x = NULL, y = NULL, xmin = peak_age_min, xmax = peak_age_max), ymin = -Inf, ymax = Inf, alpha = 0.25, fill = league_colours[3]) +
-    geom_point(colour = team_colours[[team_name]][2], fill = team_colours[[team_name]][1], shape = 21, size = 2, stroke = 0.75) +
+    geom_point(aes(x = Age, y = fct_reorder(Player, Age, max)), colour = team_colours[[team_name]][2], fill = team_colours[[team_name]][1], shape = 21, size = 6 / .pt, stroke = 1 / .pt) +
+    annotation +
+    coord_cartesian(clip = "off") +
     scale_x_continuous(
       breaks = seq.int(from = 16, to = 40, by = 2),
       labels = seq.int(from = 16, to = 40, by = 2),
@@ -46,18 +61,17 @@ plot_squad_age_positions <- function(team_name, season) {
     ) +
     labs(
       title = paste(team_name, season, "season squad profile"),
-      subtitle = paste("Squad years from peak age:", peak_age_dist),
+      subtitle = paste("Squad years from peak age:", peak_age_dist, "years"),
       x = "Age",
       y = NULL,
-      caption = "@CanPLdata | #CCdata | #CanPL",
-      tag = "Peak Age"
+      caption = "@CanPLdata | #CCdata | #CanPL"
     ) +
     theme_canpl() +
     theme(
-      plot.caption = element_text(hjust = 1.096),
-      plot.subtitle = element_text(color = league_colours[2], hjust = 0.5, lineheight = 0.3, margin = unit(c(0, 0, 15, 0), "pt"), size = 30)
+      axis.text.y = element_text(margin = unit(c(0, 0, 0, 20), "pt")),
+      plot.subtitle = element_text(color = league_colours[2], hjust = 0.5, lineheight = 0.3, margin = unit(c(0, 0, 20, 0), "pt"), size = 30)
     )
-
+  
   path <- paste0("plots/", team_name, "_", season, "_season_squad_age_positions.png")
   ggsave(path, plot, width = 2048, height = 2048, units = "px")
   add_logos(path, team_image_id)
