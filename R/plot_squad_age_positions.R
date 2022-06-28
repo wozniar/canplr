@@ -38,7 +38,7 @@ plot_squad_age_positions <- function(team_name, season) {
     nrow()
   
   annotation <- annotation_custom2(
-    grob = textGrob("Peak Age", gp = gpar(col = league_colours[2], fontsize = 30, fontfamily = "Oswald")),
+    grob = textGrob("Peak Age", gp = gpar(col = league_colours[2], fontsize = 25, fontfamily = "Oswald")),
     xmin = 26.5,
     xmax = 29.5,
     ymin = gk_count + 1.75,
@@ -66,11 +66,7 @@ plot_squad_age_positions <- function(team_name, season) {
       y = NULL,
       caption = "@CanPLdata | #CCdata | #CanPL"
     ) +
-    theme_canpl() +
-    theme(
-      axis.text.y = element_text(margin = unit(c(0, 0, 0, 20), "pt")),
-      plot.subtitle = element_text(color = league_colours[2], hjust = 0.5, lineheight = 0.3, margin = unit(c(0, 0, 20, 0), "pt"), size = 30)
-    )
+    theme_canpl(y_margin_left = 20)
   
   path <- paste0("plots/", team_name, "_", season, "_season_squad_age_positions.png")
   ggsave(path, plot, width = 2048, height = 2048, units = "px")

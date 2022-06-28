@@ -7,6 +7,7 @@ library(scales)
 library(showtext)
 library(magick)
 library(grid)
+library(rlang)
 
 # Load functions ----
 functions <- list.files("R/", full.names = TRUE)
@@ -24,7 +25,8 @@ team_totals <- read_team_totals()
 # Plots ----
 plot_params <- team_totals |> 
   select(team_name = Team, season = year) |> 
-  distinct()
+  distinct() |> 
+  filter(team_name == "Forge")
 
 pwalk(plot_params, plot_squad_age_minutes)
 pwalk(plot_params, plot_squad_age_positions)
