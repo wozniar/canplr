@@ -1,4 +1,4 @@
-theme_canpl <- function(y_margin_left = 0) {
+theme_canpl <- function() {
   theme(
     axis.text = element_text(colour = league_colours[2], family = "Oswald", size = 25),
     axis.text.y = element_text(margin = unit(c(0, 2.2, 0, 2.2), "pt")),
@@ -13,7 +13,8 @@ theme_canpl <- function(y_margin_left = 0) {
     plot.caption = element_text(size = 30, vjust = 1),
     plot.caption.position = "plot",
     plot.margin = unit(c(5.5, 20, 75, 17.8), "pt"),
-    plot.tag.position = c(0.5225, 0.895),
+    plot.tag = element_text(color = league_colours[2], margin = unit(c(20, 0, 15, 0), "pt"), size = 30),
+    plot.tag.position = c(0.5, 0.895),
     plot.title = element_text(color = league_colours[2], hjust = 0.5, margin = unit(c(7.5, 0, 5, 0), "pt"), size = 50),
     plot.title.position = "plot",
     plot.subtitle = element_text(color = league_colours[2], hjust = 0.5, lineheight = 0.3, margin = unit(c(0, 0, 15, 0), "pt"), size = 30),

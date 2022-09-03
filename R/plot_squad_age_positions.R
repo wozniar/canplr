@@ -33,23 +33,20 @@ plot_squad_age_positions <- function(team_name, season) {
 
   peak_age_dist <- round(mean(df$dist), 1)
   
-  gk_count <- df |> 
-    filter(position_code == "GK") |> 
-    nrow()
+  df_pos_count <- df |> 
+    group_by(position_code) |> 
+    count() |> 
+    ungroup() |> 
+    mutate(
+      pos = (n + 1) / 2
+    ) |> 
+    left_join(peak_ages)
   
-  annotation <- annotation_custom2(
-    grob = textGrob("Peak Age", gp = gpar(col = league_colours[2], fontsize = 25, fontfamily = "Oswald")),
-    xmin = 26.5,
-    xmax = 29.5,
-    ymin = gk_count + 1.75,
-    data = tibble(position_code = factor("GK", levels = c("GK", "CB", "FB", "CM", "WM", "AM", "ST")))
-    )
-
   plot <- ggplot(df) +
     facet_grid(rows = vars(position_code), scales = "free_y", space = "free_y") +
+    geom_text(data = df_pos_count, aes(x = peak_age), y = c(df_pos_count$pos), label = "PEAK", size = 30 / .pt, colour = league_colours[2], alpha = 0.4) +
     geom_rect(data = peak_ages, aes(x = NULL, y = NULL, xmin = peak_age_min, xmax = peak_age_max), ymin = -Inf, ymax = Inf, alpha = 0.25, fill = league_colours[3]) +
     geom_point(aes(x = Age, y = fct_reorder(Player, Age, max)), colour = team_colours[[team_name]][2], fill = team_colours[[team_name]][1], shape = 21, size = 6 / .pt, stroke = 1 / .pt) +
-    annotation +
     coord_cartesian(clip = "off") +
     scale_x_continuous(
       breaks = seq.int(from = 16, to = 40, by = 2),
@@ -66,7 +63,7 @@ plot_squad_age_positions <- function(team_name, season) {
       y = NULL,
       caption = "@CanPLdata | #CCdata | #CanPL"
     ) +
-    theme_canpl(y_margin_left = 20)
+    theme_canpl()
   
   path <- paste0("plots/", team_name, "_", season, "_season_squad_age_positions.png")
   ggsave(path, plot, width = 2048, height = 2048, units = "px")
