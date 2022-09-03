@@ -23,10 +23,9 @@ team_by_game <- read_team_by_game()
 team_totals <- read_team_totals()
 
 # Plots ----
-plot_params <- team_totals |> 
-  select(team_name = Team, season = year) |> 
-  distinct() |> 
-  filter(team_name == "Forge")
+plot_params <- team_totals |>
+  select(team_name = Team, season = year) |>
+  distinct()
 
 pwalk(plot_params, plot_squad_age_minutes)
 pwalk(plot_params, plot_squad_age_positions)
