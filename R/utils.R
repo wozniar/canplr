@@ -26,17 +26,3 @@ get_peak_ages <- function() {
     peak_age_max = c(29.5, 28.5, 26.5, 26.5, 27.5, 27.5, 28.5)
   )
 }
-
-# https://stackoverflow.com/questions/44688623/adding-custom-images-to-ggplot-facets
-# https://www.blopig.com/blog/2019/08/combining-inset-plots-with-facets-using-ggplot2/
-annotation_custom2 <- function(grob, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf, data) {
-    layer(
-      data = data, stat = StatIdentity, position = PositionIdentity,
-      geom = ggplot2:::GeomCustomAnn,
-      inherit.aes = TRUE, params = list(
-        grob = grob,
-        xmin = xmin, xmax = xmax,
-        ymin = ymin, ymax = ymax
-      )
-    )
-  }

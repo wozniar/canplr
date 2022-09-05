@@ -37,3 +37,6 @@ team_colours[["HFX Wanderers"]] <- c("#41B6E6", "#002855", "#999999", "#FFFFFF")
 team_colours[["Pacific"]] <- c("#582C83", "#00B7BD", "#FFFFFF")
 team_colours[["Valour"]] <- c("#7C2629", "#010101", "#B9975B", "#FFFFFF")
 team_colours[["York United"]] <- c("#046A38", "#003B5C", "#89764B", "#FFFFFF")
+
+# CAPTION ----
+caption <- "@wozniar | @CanPLdata | #CCdata | #CanPL"
