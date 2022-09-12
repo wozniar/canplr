@@ -39,6 +39,7 @@ vignettes/*.pdf
 .Renviron
 
 # Added
+data_raw/
 data/
 graphics/
 plots/
