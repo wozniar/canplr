@@ -63,11 +63,13 @@ plot_squad_age_positions <- function(team_name, season) {
       )
     ) +
     labs(
-      title = paste(team_name, season, "season squad profile"),
-      subtitle = paste("Squad years from peak age:", peak_age_dist),
+      title = team_name,
+        paste(team_name, season, "season age profile"),
+      subtitle = paste("Age profile and depth |", season, "season | Squad years from peak age:", peak_age_dist),
       x = "Age",
       y = NULL,
-      caption = caption
+      caption = caption,
+      tag = tag
     ) +
     theme_canpl()
   

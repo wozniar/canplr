@@ -3,10 +3,6 @@ if (!(dir.exists("plots"))) {
   dir.create("plots")
 }
 
-# LOGOS ----
-cpl_logo <- image_read("graphics/Canadian_Premier_League_logo.png")
-sp_logo <- image_read("graphics/StatsPerformLogo.png")
-
 # FONTS ----
 # Fonts as found here: https://canpl.ca/
 if (!("Oswald" %in% font_installed())) {
@@ -39,4 +35,5 @@ team_colours[["Valour"]] <- c("#7C2629", "#010101", "#B9975B", "#FFFFFF")
 team_colours[["York United"]] <- c("#046A38", "#003B5C", "#89764B", "#FFFFFF")
 
 # CAPTION ----
-caption <- "@wozniar | @CanPLdata | #CCdata | #CanPL"
+caption <- "@wozniar"
+tag <- "@CanPLdata | #CCdata | #CanPL"

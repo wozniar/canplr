@@ -32,11 +32,12 @@ plot_squad_age_minutes <- function(team_name, season) {
       labels = number_format(big.mark = " ")
     ) +
     labs(
-      title = paste(team_name, season, "season squad profile"),
-      subtitle = paste("Average age weighted by minutes played:", mean_age, "years"),
+      title = team_name,
+      subtitle = paste("Squad playing time |", season, "season | Average age weighted by minutes played:", mean_age, "years"),
       x = "Age",
       y = "Minutes played",
-      caption = caption
+      caption = caption,
+      tag = tag
     ) +
     theme_canpl()
   

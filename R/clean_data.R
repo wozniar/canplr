@@ -6,22 +6,22 @@ clean_data <- function() {
 }
 
 clean_player_by_game <- function() {
-  process_data("CPLPlayerByGame")
+ preprocess_data("CPLPlayerByGame")
 }
 
 clean_player_totals <- function() {
-  process_data("CPLPlayerTotals")
+  preprocess_data("CPLPlayerTotals")
 }
 
 clean_team_by_game <- function() {
-  process_data("CPLTeamByGame")
+  preprocess_data("CPLTeamByGame")
 }
 
 clean_team_totals <- function() {
-  process_data("CPLTeamTotals")
+  preprocess_data("CPLTeamTotals")
 }
 
-process_data <- function(data) {
+preprocess_data <- function(data) {
   files <- list.files("data_raw/", pattern = data, full.names = TRUE)
   list <- map(files, read_csv, col_types = cols(Date = col_character()))
   names(list) <- str_extract(files, "\\d+")
