@@ -8,6 +8,7 @@ library(showtext)
 library(magick)
 library(grid)
 library(rlang)
+library(readxl)
 
 # Load functions ----
 functions <- list.files("R/", full.names = TRUE)

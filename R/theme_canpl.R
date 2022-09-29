@@ -1,9 +1,9 @@
-theme_canpl <- function() {
+theme_canpl <- function(base_size = 25) {
   theme(
-    axis.text = element_text(colour = league_colours[2], family = "Oswald", size = 25),
+    axis.text = element_text(colour = league_colours[2], family = "Oswald", size = base_size),
     axis.text.y = element_text(margin = unit(c(0, 2.2, 0, 2.2), "pt")),
     axis.ticks = element_blank(),
-    axis.title = element_text(size = 30),
+    axis.title = element_text(size = base_size * 1.2),
     axis.title.x = element_text(margin = unit(c(7.5, 0, 7.5, 0), "pt")),
     axis.title.y = element_text(margin = unit(c(0, 7.5, 7.5, 0), "pt")),
     panel.background = element_rect(fill = league_colours[4]),
@@ -21,7 +21,7 @@ theme_canpl <- function() {
     strip.background = element_rect(colour = league_colours[2], fill = league_colours[4]),
     strip.placement = "outside",
     strip.switch.pad.grid = unit(10, "pt"),
-    strip.text.y = element_text(angle = 360, colour = league_colours[2], family = "Oswald", size = 25),
-    text = element_text(colour = league_colours[2], family = "Oswald", size = 25)
+    strip.text = element_text(angle = 360, colour = league_colours[2], family = "Oswald", size = 25),
+    text = element_text(colour = league_colours[2], family = "Oswald", size = base_size)
   )
 }

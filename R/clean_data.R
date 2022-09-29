@@ -25,7 +25,6 @@ preprocess_data <- function(data) {
   files <- list.files("data_raw/", pattern = data, full.names = TRUE)
   list <- map(files, read_csv, col_types = cols(Date = col_character()))
   names(list) <- str_extract(files, "\\d+")
-  # return(list)
   if (data == "CPLPlayerByGame") {
     df <- list |> 
       map(~ .x |> mutate(Date = as.Date(Date, tryFormats = c("%Y-%m-%d", "%m/%d/%Y")))) |>

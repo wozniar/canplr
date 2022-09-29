@@ -1,4 +1,4 @@
-add_logos <- function(path, team_image_id) {
+add_logos <- function(path) {
   # team_logo <- image_read(
   #   paste0("https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=", team_image_id)
   # )
