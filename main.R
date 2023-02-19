@@ -22,11 +22,13 @@ player_by_game <- read_player_by_game()
 player_totals <- read_player_totals()
 team_by_game <- read_team_by_game()
 team_totals <- read_team_totals()
+metric_definitions <- get_metric_definitions(Sys.getenv("drive_email"), Sys.getenv("metric_defitions_url"))
 
 # Plots ----
 plot_params <- team_totals |>
   select(team_name = Team, season = year) |>
-  distinct()
+  distinct() |> 
+  filter(season == 2022)
 
 pwalk(plot_params, plot_squad_age_minutes)
 pwalk(plot_params, plot_squad_age_positions)

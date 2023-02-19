@@ -75,5 +75,5 @@ plot_squad_age_positions <- function(team_name, season) {
   
   path <- paste0("plots/", team_name, "_", season, "_season_squad_age_positions.png")
   ggsave(path, plot, width = 2048, height = 2048, units = "px")
-  add_logos(path, team_image_id)
+  add_logos(path)
 }

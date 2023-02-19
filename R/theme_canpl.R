@@ -21,7 +21,7 @@ theme_canpl <- function(base_size = 25) {
     strip.background = element_rect(colour = league_colours[2], fill = league_colours[4]),
     strip.placement = "outside",
     strip.switch.pad.grid = unit(10, "pt"),
-    strip.text = element_text(angle = 360, colour = league_colours[2], family = "Oswald", size = 25),
+    strip.text.y = element_text(angle = 0, colour = league_colours[2], family = "Oswald", size = 25),
     text = element_text(colour = league_colours[2], family = "Oswald", size = base_size)
   )
 }
