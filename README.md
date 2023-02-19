@@ -1,4 +1,4 @@
-# canpl - Exploring Canadian Premier League data
+# canplr - Exploring Canadian Premier League data
 
 ## General info
 

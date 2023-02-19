@@ -44,3 +44,6 @@ data/
 graphics/
 plots/
 *.xlsx
+.Rproj.user
+.Rdata
+.DS_Store
