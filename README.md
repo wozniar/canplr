@@ -6,7 +6,10 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-Tools for Working with Canadian Premier League Centre Circle Data.
+Tools for Working with Canadian Premier League Centre Circle Data
+provided by CPL in partnership with Stats Perform.
+
+You can get the data here: <https://canpl.ca/centre-circle-data/>
 
 ## Installation
 
