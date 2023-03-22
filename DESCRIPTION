@@ -3,7 +3,7 @@ Title: Tools for Working with Canadian Premier League Centre Circle Data
 Version: 0.0.0.9000
 Authors@R: 
     person("Robert", "Woźniak", , "first.last@o2.pl", role = c("aut", "cre"))
-Description: Tools for Working with Canadian Premier League Centre Circle Data 
+Description: Tools for Working with Canadian Premier League Centre Circle Data. 
 (<https: //canpl.ca/centre-circle-data>).
 License: MIT + file LICENSE
 Encoding: UTF-8
@@ -12,3 +12,10 @@ RoxygenNote: 7.2.3
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
+Imports: 
+    dplyr,
+    googledrive,
+    lubridate,
+    purrr,
+    utils,
+    withr
