@@ -60,7 +60,8 @@ download_data <- function(email, url, dir) {
 #' }
 update_data <- function(email, url, dir) {
   if (dir.exists(dir) == FALSE) {
-    stop(paste0(dir, " doesn't exist. Choose an existing directory or use download_data()."),
+    stop(paste0(dir, " doesn't exist.
+                Choose an existing directory or use download_data()."),
       call. = FALSE
     )
   }
