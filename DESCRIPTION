@@ -16,6 +16,7 @@ Imports:
     dplyr,
     googledrive,
     lubridate,
+    magrittr,
     purrr,
     utils,
     withr

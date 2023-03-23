@@ -27,12 +27,12 @@ download_data <- function(email, url, dir) {
   )
   data_files <- purrr::map_df(data_folders_urls, googledrive::drive_ls,
     pattern = "csv"
-  ) |>
+  )  %>%
     dplyr::mutate(
       file = paste0("https://drive.google.com/file/d/", id),
       path = paste0(dir, "/", name),
       overwrite = TRUE
-    ) |>
+    ) %>%
     dplyr::select(file, path, overwrite)
   message("Downloading data...")
   purrr::pwalk(data_files, googledrive::drive_download, .progress = TRUE)
@@ -71,8 +71,8 @@ update_data <- function(email, url, dir) {
   )
   data_files <- purrr::map_df(data_folders_urls, googledrive::drive_ls,
     pattern = "csv"
-  ) |>
-    googledrive::drive_reveal("modified_time") |>
+  ) %>%
+    googledrive::drive_reveal("modified_time") %>%
     dplyr::mutate(
       file = paste0("https://drive.google.com/file/d/", id),
       path = paste0(dir, "/", name),
@@ -85,8 +85,8 @@ update_data <- function(email, url, dir) {
   if (any(is.na(data_files$local_modified_time))) {
     stop("Some files are missing. Use download_data() instead.")
   }
-  data_files <- data_files |>
-    dplyr::filter(modified_time > local_modified_time) |>
+  data_files <- data_files %>%
+    dplyr::filter(modified_time > local_modified_time) %>%
     dplyr::select(file, path, overwrite)
   to_update <- nrow(data_files)
   if (to_update > 0) {
