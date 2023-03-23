@@ -60,10 +60,7 @@ download_data <- function(email, url, dir) {
 #' }
 update_data <- function(email, url, dir) {
   if (dir.exists(dir) == FALSE) {
-    stop(paste0(dir, " doesn't exist.
-                Choose an existing directory or use download_data()."),
-      call. = FALSE
-    )
+    stop(dir, " doesn't exist. Choose an existing directory or use download_data().")
   }
   googledrive::drive_auth(email = email)
   main_folder <- googledrive::drive_ls(url, pattern = "Season")

@@ -1,4 +1,5 @@
 test_that("Download works", {
+  skip_if_no_credentials()
   dir <- withr::local_tempdir()
   download_data(
     Sys.getenv("drive_email"),
