@@ -27,7 +27,7 @@ download_data <- function(email, url, dir) {
   )
   data_files <- purrr::map_df(data_folders_urls, googledrive::drive_ls,
     pattern = "csv"
-  )  %>%
+  ) %>%
     dplyr::mutate(
       file = paste0("https://drive.google.com/file/d/", id),
       path = paste0(dir, "/", name),
