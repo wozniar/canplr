@@ -13,11 +13,11 @@ Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Imports: 
-    dplyr,
-    googledrive,
-    lubridate,
-    magrittr,
-    purrr,
-    readr,
-    utils,
-    withr
+    dplyr (>= 1.1.1),
+    googledrive (>= 2.1.0),
+    lubridate (>= 1.9.2),
+    magrittr (>= 2.0.3),
+    purrr (>= 1.0.1),
+    readr (>= 2.1.4),
+    utils (>= 4.2.3),
+    withr (>= 2.5.0)
