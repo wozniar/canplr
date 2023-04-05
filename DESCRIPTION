@@ -19,5 +19,5 @@ Imports:
     magrittr (>= 2.0.3),
     purrr (>= 1.0.1),
     readr (>= 2.1.4),
-    utils (>= 4.2.3),
+    utils (>= 3.5.3),
     withr (>= 2.5.0)
