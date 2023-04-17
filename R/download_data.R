@@ -1,10 +1,10 @@
 #' Download Canadian Premier League Centre Circle Data
 #'
-#' @param email E-mail associated with Google account.
+#' @param email E-mail associated with a Google account.
 #' @param url Link to the Centre Circle Data Google Drive folder.
 #' @param dir Folder in which the data will be saved.
 #'
-#' @return CSV files saved in given directory.
+#' @return CSV files saved in the named directory.
 #' @export
 #'
 #' @examples
@@ -80,7 +80,7 @@ update_data <- function(email, url, dir) {
       )
     )
   if (any(is.na(data_files$local_modified_time))) {
-    stop("Some files are missing. Use download_data() instead.")
+    stop("Some files are missing. Use canplr::download_data() instead.")
   }
   data_files <- data_files %>%
     dplyr::filter(modified_time > local_modified_time) %>%
