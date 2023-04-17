@@ -18,8 +18,10 @@ read_data <- function(dir) {
   }
   names <- gsub("/", "", names)
   names <- gsub(".csv", "", names)
-  data <- purrr::map(files, readr::read_csv, show_col_types	= FALSE,
-                     .progress = TRUE)
+  data <- purrr::map(files, readr::read_csv,
+    show_col_types = FALSE,
+    .progress = TRUE
+  )
   names(data) <- names
   return(data)
 }
