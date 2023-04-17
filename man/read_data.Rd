@@ -7,7 +7,7 @@
 read_data(dir)
 }
 \arguments{
-\item{dir}{Folder containing the data.}
+\item{dir}{Directory containing the data.}
 }
 \value{
 A list of data frames.

@@ -7,14 +7,14 @@
 download_data(email, url, dir)
 }
 \arguments{
-\item{email}{E-mail associated with Google account.}
+\item{email}{E-mail associated with a Google account.}
 
 \item{url}{Link to the Centre Circle Data Google Drive folder.}
 
 \item{dir}{Folder in which the data will be saved.}
 }
 \value{
-CSV files saved in given directory.
+CSV files saved in the named directory.
 }
 \description{
 Download Canadian Premier League Centre Circle Data
